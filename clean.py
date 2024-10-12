@@ -1,20 +1,14 @@
 import re
 
-def remove_credit(text):
-    # This pattern matches a quote (anything in quotation marks)
-    # followed by a dash or em-dash and then any text until the end of the line
-    pattern = r'(".*?").*$'
-    return re.sub(pattern, r'\1', text, flags=re.MULTILINE)
+# Define the regex pattern
+pattern = r'[“"“](.*?)[”"”].*$'
 
-# Read the input file
-with open('input.txt', 'r') as file:
-    content = file.read()
+# Read from the input file
+with open('input.txt', 'r', encoding='utf-8') as file:
+    text = file.readlines()
 
-# Remove credits
-cleaned_content = remove_credit(content)
-
-# Write the result to a new file
-with open('output.txt', 'w') as file:
-    file.write(cleaned_content)
-
-print("Credits removed successfully. Check 'output.txt' for the result.")
+# Process each line and apply the regex substitution
+with open('output.txt', 'w', encoding='utf-8') as file:
+    for line in text:
+        modified_line = re.sub(pattern, r'\1', line)
+        file.write(modified_line)
