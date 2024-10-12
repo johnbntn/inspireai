@@ -8,6 +8,7 @@ def main():
     with open('trainingData.txt', 'r', encoding='utf-8') as file:
         text = file.readlines()
     markov = m.Markov().buildChain(wordCount, text)
+    markov = "\"" + markov + "\""
     print(markov)
 
 main()

@@ -16,5 +16,3 @@ def intro():
     print ("I:" + random.choice(introduction))
     x = input()
     print ("I:" + random.choice(response))
-
-intro()
