@@ -1,11 +1,15 @@
-import collections, random, sys, textwrap
+import random
 import markov as m
 def main():
 
-    wordCount = random.randint(10, 15)
+    wordCount = random.randint(5, 15)
     #Create chain
-    markov = m.Markov().buildChain(wordCount, sys.stdin)
+    with open('trainingData.txt', 'r', encoding='utf-8') as file:
+        text = file.readlines()
+    markov = m.Markov().buildChain(wordCount, text)
 
     #Call intro thing
 
     print(markov)
+
+main()
