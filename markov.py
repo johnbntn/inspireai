@@ -1,7 +1,7 @@
 import collections, random, sys, textwrap
 
 class Markov:
-    def buildChain(outlen, input):
+    def buildChain(self, input):
         # Build possibles table indexed by pair of prefix words (w1, w2)
         w1 = w2 = ''
         possibles = collections.defaultdict(list)
@@ -17,11 +17,11 @@ class Markov:
         # Generate randomized output (start with a random capitalized prefix)
         w1, w2 = random.choice([k for k in possibles if k[0][:1].isupper()])
         output = [w1, w2]
-        for _ in range(int(outlen)):
+        while w2[-1] != '.':
             word = random.choice(possibles[w1, w2])
             output.append(word)
             w1, w2 = w2, word
 
         # return output wrapped to 70 columns
-        out = textwrap.fill(' '.join(output))
+        out = ' '.join(output)
         return out
